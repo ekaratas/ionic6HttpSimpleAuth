@@ -1,0 +1,35 @@
+<ion-content>
+  <form (ngSubmit)="signup()" [formGroup]="uyelikBilgisi">
+    <div class="input-group">
+      <ion-item>
+        <ion-input type="text" placeholder="Ad" formControlName="ad"></ion-input>
+      </ion-item>
+
+      <div *ngIf="(ad.dirty || ad.touched) && ad.errors" class="errors">
+        <span *ngIf="ad.errors?.required">Ad Gereklidir</span>
+        <span *ngIf="ad.errors?.minlength">Adınız en az 3 karakter olmalıdır</span>
+      </div>
+      <ion-item>
+        <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+      </ion-item>
+
+      <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
+        <span *ngIf="email.errors?.required">Eposta Gereklidir</span>
+        <span *ngIf="email.errors?.email">Geçersiz Eposta Adresi</span>
+      </div>
+
+      <ion-item>
+        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+      </ion-item>
+      <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
+        <span *ngIf="password.errors?.required">Parola Gereklidir</span>
+        <span *ngIf="password.errors?.minlength">Parolanız en az 6 karakter olmalıdır</span>
+      </div>
+    </div>
+
+    <ion-button type="submit" expand="block" [disabled]="!uyelikBilgisi.valid">Kayıt Ol</ion-button>
+    <ion-button type="button" expand="block" color="light" fill="clear" [routerLink]="['/login']">Giriş Yap</ion-button>
+
+  </form>
+
+</ion-content>

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
+
 
 @Component({
   selector: 'app-home',
@@ -7,6 +10,12 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(public router:Router, public authenticationservice:AuthenticationService) {}
+
+  exit()
+  {
+this.authenticationservice.removeItem('user_ionichttpAuth');
+this.router.navigateByUrl('/');
+  }
 
 }
